@@ -7,7 +7,7 @@ import { generarJWT, comprobarJWT } from '../helpers/jwt';
 
 
 const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
+    host: process.env.MAIL_HOST,
     port: 465,
     secure: true, // true for 465, false for other ports
     auth: {
