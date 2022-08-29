@@ -1,11 +1,11 @@
 import express from 'express'
 const app = express()
 import morgan from 'morgan'
-require('dotenv').config()
 import path from 'path'
 import expressHandleBars from 'express-handlebars'
 import passport from 'passport'
 import passportMiddleware from './middlewares/passport'
+require('dotenv').config()
 
 //DB config
 require('./database/databaseConfig').dbConnection()

@@ -1,18 +1,18 @@
-import { Router } from 'express';
-import { check } from 'express-validator';
-import { generateQR, generateQRLogo } from '../controllers/qrController';
-import { validarCampos } from '../middlewares/middelwares';
-import { validarJWT } from '../middlewares/validarJwt';
+import { Router } from 'express'
+import { check } from 'express-validator'
+import { generateQR, generateQRLogo } from '../controllers/qrController'
+import { validarJWT, validarCampos } from '../middlewares'
 
-const router = Router();
+const router = Router()
 
-router.post('/', [
+router.post(
+  '/',
+  [
     check('url', 'Ingrese un url valido').not().isEmpty(),
     validarCampos,
     validarJWT,
-], generateQR);
+  ],
+  generateQR,
+)
 
-
-
-
-export default router;
+export default router

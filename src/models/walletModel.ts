@@ -1,37 +1,36 @@
-import { Schema, model } from 'mongoose';
-import { IWallet } from '../interfaces/interfaces';
-import { USERS, WALLET } from './documents';
+import { Schema, model } from 'mongoose'
+import { IWallet } from '../interfaces'
+import { USERS, WALLET } from './documents'
 
-const WalletSchema = new Schema({
-
+const WalletSchema = new Schema(
+  {
     balance: {
-        type: Number,
-        default: 0
+      type: Number,
+      default: 0,
     },
     idUser: {
-        type: Schema.Types.ObjectId,
-        ref: USERS,
-        required: true
+      type: Schema.Types.ObjectId,
+      ref: USERS,
+      required: true,
     },
-    walletName:{
-        type: String,
-        required: true
+    walletName: {
+      type: String,
+      required: true,
     },
     block: {
-        type: Boolean,
-        default: false,
-        required: true
+      type: Boolean,
+      default: false,
+      required: true,
     },
-
-}, {
+  },
+  {
     timestamps: true,
-});
-
-
+  },
+)
 
 WalletSchema.method('toJSON', function () {
-    const { __v, ...object } = this.toObject();
-    return object;
+  const { __v, ...object } = this.toObject()
+  return object
 })
 
-export default model<IWallet>(WALLET, WalletSchema);
+export default model<IWallet>(WALLET, WalletSchema)

@@ -1,18 +1,29 @@
-import { Router } from 'express';
-import { check } from 'express-validator';
-import { passwordChanged, renderConfirmEmail, renderRecoveryForm, SendEmailActivation, sendEmailToRecoveryPassword, verifiedEmail, verifyCheck } from '../controllers/mailController';
-import { validarCampos } from '../middlewares/middelwares';
-import { validarJWTEmail, validateIfEmailExists } from '../middlewares/validarJwt';
-import passport from 'passport';
+import { Router } from 'express'
+import { check } from 'express-validator'
+import {
+  passwordChanged,
+  renderConfirmEmail,
+  renderRecoveryForm,
+  SendEmailActivation,
+  sendEmailToRecoveryPassword,
+  verifiedEmail,
+  verifyCheck,
+} from '../controllers/mailController'
 
+import {
+  validarJWTEmail,
+  validateIfEmailExists,
+  validarCampos,
+} from '../middlewares'
+import passport from 'passport'
 
-const router = Router();
+const router = Router()
 // /sendmail/
-router.post('/', [
-
-    check('email', 'El email es obligatorio').isEmail(),
-    validarCampos
-], SendEmailActivation);
+router.post(
+  '/',
+  [check('email', 'El email es obligatorio').isEmail(), validarCampos],
+  SendEmailActivation,
+)
 
 /* router.post('/recoverypassword', [
 
@@ -20,36 +31,52 @@ router.post('/', [
     validarCampos
 ], sendEmailToRecoveryPassword);
  */
-router.get('/confirm/:token/:email', [
-    validateIfEmailExists
-], renderConfirmEmail);
+router.get(
+  '/confirm/:token/:email',
+  [validateIfEmailExists],
+  renderConfirmEmail,
+)
 
-router.get('/verifiedemail', [], verifiedEmail);
+router.get('/verifiedemail', [], verifiedEmail)
 
-router.get('/verifycheck/:token/', [
-    validarJWTEmail,
-    validateIfEmailExists], verifyCheck);
+router.get(
+  '/verifycheck/:token/',
+  [validarJWTEmail, validateIfEmailExists],
+  verifyCheck,
+)
 
-
-router.post('/recoverypassword/', [
+router.post(
+  '/recoverypassword/',
+  [
     check('email', 'El email es obligatorio').isEmail(),
     validarCampos,
     validateIfEmailExists,
-], sendEmailToRecoveryPassword);
+  ],
+  sendEmailToRecoveryPassword,
+)
 
-router.get('/recoverypasswordform/:token/', [validarJWTEmail], renderRecoveryForm);
+router.get(
+  '/recoverypasswordform/:token/',
+  [validarJWTEmail],
+  renderRecoveryForm,
+)
 
-router.post('/confirmchangepassword/:token/', [
+router.post(
+  '/confirmchangepassword/:token/',
+  [
     check('newPassword', 'Ingrese una nueva contraseña').not().isEmpty(),
     validarCampos,
-    validarJWTEmail
-], passwordChanged);
+    validarJWTEmail,
+  ],
+  passwordChanged,
+)
 
+router.get(
+  '/special',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    res.send('success')
+  },
+)
 
-router.get('/special', passport.authenticate('jwt', { session: false }), (req, res) => {
-    res.send('success');
-})
-
-export default router;
-
-
+export default router
