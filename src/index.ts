@@ -25,12 +25,12 @@ import './sockets/socket';
 
 app.enable('trust proxy');
 app.set('views', path.join(__dirname, 'views'));
-app.engine('.hbs', expressHandleBars({
+/* app.engine('.hbs', expressHandleBars({
     defaultLayout: 'main',
     layoutsDir: path.join(app.get('views'), 'layouts'),
     partialsDir: path.join(app.get('views'), 'partials'),
     extname: '.hbs'
-}));
+})); */
 app.set('view engine', '.hbs');
 
 //Lectura y parse de BODY
@@ -54,16 +54,13 @@ app.use('/sendmail', mailRoutes);
 
 
 
-
-
-
 server.listen(port, () => {
     console.log(`Server on port ${port}`);
 });
 
 
 //TODO add uploads file to image profile
-//TODO add google signing 
+//TODO add google signing
 //TODO ?report by month
 
 
