@@ -5,7 +5,15 @@ import path from 'path'
 import expressHandleBars from 'express-handlebars'
 import passport from 'passport'
 import passportMiddleware from './middlewares/passport'
-require('dotenv').config()
+import {
+  authRoutes,
+  mailRoutes,
+  qrRoutes,
+  transactionsRoutes,
+  walletRoutes,
+} from './routes'
+
+require('dotenv').config({ path: path.join(__dirname, '../../.env') })
 
 //DB config
 require('./database/databaseConfig').dbConnection()
@@ -16,13 +24,6 @@ const port = process.env.PORT
 const server = require('http').createServer(app)
 export const io = require('socket.io')(server)
 import './sockets/socket'
-import {
-  authRoutes,
-  mailRoutes,
-  qrRoutes,
-  transactionsRoutes,
-  walletRoutes,
-} from './routes'
 
 app.enable('trust proxy')
 app.set('views', path.join(__dirname, 'views'))
