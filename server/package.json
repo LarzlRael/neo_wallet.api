@@ -1,0 +1,51 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node build/index.js",
+    "dev": "nodemon src/index.ts",
+    "build": "npm run clean && tsc",
+    "clean": "rimraf build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "bcryptjs": "^2.4.3",
+    "canvas": "^2.8.0",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.3.2",
+    "express-validator": "^6.12.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.13.0",
+    "morgan": "^1.10.0",
+    "nodemailer": "^6.6.2",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "qrcode": "^1.4.4",
+    "rimraf": "^3.0.2",
+    "socket.io": "^2.3.0"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "@types/express": "^4.17.12",
+    "@types/express-handlebars": "^5.3.1",
+    "@types/jsonwebtoken": "^8.5.2",
+    "@types/morgan": "^1.9.3",
+    "@types/node": "^15.12.5",
+    "@types/nodemailer": "^6.4.4",
+    "@types/passport-jwt": "^3.0.6",
+    "@types/qrcode": "^1.4.0",
+    "@types/socket.io": "^3.0.2",
+    "nodemon": "^2.0.8",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.4"
+  }
+}
